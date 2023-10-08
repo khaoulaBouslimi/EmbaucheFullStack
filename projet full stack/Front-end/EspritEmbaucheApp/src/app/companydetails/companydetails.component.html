@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  
+  
+  
+      <!---------------------------------------back container------------------------------------------------------------>
+    
+      
+    <div class="container" >
+
+      <div class="card mb-4">
+  
+        <button (click)="redirectToAdminDashboard()" class="close-button">
+          <i class="bi bi-arrow-left-circle-fill" style="font-size: 50px;"></i>
+        </button>
+
+        <form  (submit)="onUpdateCompany()">
+
+          <div class="content">
+    
+            
+
+          <div class="formbold-form-title">
+  
+  
+            <!--{{data.companySname}}-->
+            <h2 >Description de l'entreprise :  </h2>
+            <p style="text-align: center; font-size: 30px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: #800040;">
+              {{ company?.companySname }}
+            </p>
+          </div>
+        
+           
+  
+  
+  
+          
+
+
+          <div class="lab-container">
+
+            <label class="formbold-form-label">
+              Nom de l'entreprise :  
+               
+  
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="companySname" [(ngModel)]="company.companySname" name="companySname" >
+                
+              </div> 
+            </label>   
+    
+            <label class="formbold-form-label">Nombre d'employées : 
+              
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="nbrEmployees" [(ngModel)]="company.nbrEmployees" name="nbrEmployees" >
+            
+              </div>
+  
+            </label>  
+
+          </div>
+  
+          
+  
+
+          <div class="lab-container">
+            <label class="formbold-form-label">Adresse de l'entreprise : 
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="adress" [(ngModel)]="company.adress" name="adress" >
+            
+              </div>
+            </label>     
+
+            <label class="formbold-form-label">Date fin: 
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="numTel" [(ngModel)]="company.numTel" name="numTel" >
+            
+              </div>
+            </label> 
+  
+          </div> 
+
+
+
+
+
+
+
+          </div>
+
+
+
+          
+
+
+
+
+          <button class="btn-shine" type="submit">
+            <span>Modifier</span>
+        </button>
+
+
+        </form>
+        
+        
+  
+  
+      </div>
+  
+      
+  
+  
+    </div>
+  
+  
+  
+  
+
+      
+</body>
+</html>

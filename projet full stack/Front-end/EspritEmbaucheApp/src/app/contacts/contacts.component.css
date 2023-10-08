@@ -1,0 +1,50 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 500px; /* Set a fixed height for the container */
+    overflow-y: auto; 
+ 
+  }
+
+  /* Hide the vertical scrollbar */
+.card-container::-webkit-scrollbar {
+    width: 0; /* Set the width to zero */
+  }
+  
+  .contact-card {
+    width: 400px;
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px  rgba(182, 160, 250, 0.5);  
+    position: relative;
+
+}
+
+.delete-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  margin-bottom: 10px;
+  color: rgb(215, 130, 238);
+}
+
+.mat-h1 {
+    text-align: center;
+    margin-top: 20px; 
+    font-size: 26px;
+    margin: 20px 0;
+  }
+
+  .mat-card-title {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .mat-card-title i {
+    font-size: 20px;
+    margin-left: 160px;
+  }
+
+  /****************************************************/
+  

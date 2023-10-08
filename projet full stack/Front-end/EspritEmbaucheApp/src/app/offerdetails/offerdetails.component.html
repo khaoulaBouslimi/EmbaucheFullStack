@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  
+  
+    
+  
+  
+      <!---------------------------------------back container------------------------------------------------------------>
+    
+    <div class="container" >
+  
+      <div class="card mb-4">
+
+        <button (click)="redirectToAdminDashboard()" class="close-button">
+          <i class="bi bi-arrow-left-circle-fill" style="font-size: 50px;"></i>
+        </button>
+  
+
+        <form (ngSubmit)="updateJobOffer()">
+
+          <div class="content">
+    
+ 
+          <div class="formbold-form-title">
+  
+  
+            <!--{{data.companySname}}-->
+            <h2 >Description de l'offre :  </h2>
+            <p style="text-align: center; font-size: 30px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: #800040;">
+              {{ jobOffer?.jobTitle }}
+            </p>
+          </div>
+        
+          <label class="formbold-form-label">
+            Titre de l'offre :  
+             
+
+            <div class="input-container">
+              <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+              <input class="form__input" type="text" id="jobTitle" [(ngModel)]="jobOffer.jobTitle" name="jobTitle" >
+              
+            </div> 
+          </label>    
+  
+  
+  
+          
+
+
+          <div class="lab-container">
+
+            <label class="formbold-form-label">Type du contrat: 
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="jobType" [(ngModel)]="jobOffer.jobType" name="jobType" >
+            
+              </div>
+            </label>
+    
+            <label class="formbold-form-label">Expériences requise: 
+              
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="expLevel" [(ngModel)]="jobOffer.expLevel" name="expLevel" >
+            
+              </div>
+  
+            </label>  
+
+          </div>
+  
+          
+  
+
+          <div class="lab-container">
+            <label class="formbold-form-label">Date du début: 
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="startDate" [(ngModel)]="jobOffer.startDate" name="startDate" >
+            
+              </div>
+            </label>     
+
+            <label class="formbold-form-label">Duate fin: 
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="endDate" [(ngModel)]="jobOffer.endDate" name="endDate" >
+            
+              </div>
+            </label> 
+  
+          </div>
+
+
+          <div class="lab-container">
+
+            <label class="formbold-form-label">Ville: 
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="country" [(ngModel)]="jobOffer.country" name="country" > 
+              </div>
+            </label>  
+    
+            <label class="formbold-form-label">Langues: 
+              <div class="input-container">
+                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                <input class="form__input" type="text" id="language" [(ngModel)]="jobOffer.language" name="language" > 
+              </div>
+            </label> 
+
+
+          </div>
+
+           
+  
+          <label class="formbold-form-label">lien: 
+            <div class="input-container">
+              <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+              <input class="form__input" type="text" id="websiteLink" [(ngModel)]="jobOffer.websiteLink" name="websiteLink" > 
+            </div>
+          </label>   
+  
+
+
+          <label class="formbold-form-label">Description de l'offre:
+
+            <angular-editor [(ngModel)]="jobOffer.description" name="description" [(ngModel)]="jobOffer.description" id="description" >
+                
+            </angular-editor>
+
+            
+
+            <!-- 
+            <div class="input-container"  [innerHTML]="jobOffer.description"> 
+              <textarea  name="description" [(ngModel)]="jobOffer.description" id="description" cols="30" rows="10"></textarea>
+            </div>
+          -->
+          </label>  
+
+
+
+
+
+
+
+
+
+          </div>
+
+
+
+          
+
+
+
+
+          <button class="btn-shine" type="submit">
+            <span>Modifier</span>
+        </button>
+
+
+        </form>
+        
+        
+  
+  
+      </div>
+  
+      
+  
+  
+    </div>
+  
+  
+  
+  
+
+      
+</body>
+</html>

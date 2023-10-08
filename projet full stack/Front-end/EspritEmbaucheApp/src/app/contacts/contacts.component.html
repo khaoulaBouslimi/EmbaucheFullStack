@@ -1,0 +1,31 @@
+ 
+
+<!-- Add the title at the top center -->
+  <h1 class="mat-h1" style="margin-top: 60px; margin-bottom: 60px;"> Les réclamations reçues </h1>
+
+  <div class="card-container" >
+ 
+      <mat-card class="contact-card" *ngFor="let contact of contacts"  >
+        <button mat-icon-button class="delete-button" (click)="deleteContact(contact.id)">
+          <i class="bi bi-x-circle-fill"></i>
+        </button>
+    
+        <mat-card-header>
+          <mat-card-title ><i class="fa-solid fa-quote-right" ></i></mat-card-title>
+          <mat-card-subtitle>{{ contact.sujet }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          
+          <p style="text-align: center;">{{ contact.message }}</p>
+  
+          <p style="margin-top: 20px; text-align: center;">{{ contact.nometprenom }}</p>
+  
+          <p >Email: {{ contact.email }}</p>
+          <p> <i class="bi bi-telephone-fill"></i> {{ contact.tel }}</p>
+  
+        </mat-card-content>
+      </mat-card>
+
+     
+  </div>
+  

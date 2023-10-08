@@ -1,0 +1,171 @@
+<body>
+  
+
+  <div class="wrapper">
+
+  
+    <div class="session">
+      <div class="left">
+
+
+      </div>
+
+
+
+      <form  *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+
+        
+        <h4> <span>Inscription</span></h4>
+        <p style="text-align: center;">Veuillez remplir ce formulaire pour joutez un admin </p>
+
+
+        <input type="text" class="formbold-form-input" name="username" placeholder="Username" [(ngModel)]="form.username"
+          required minlength="3" maxlength="20" #username="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && username.errors }" />
+        <div *ngIf="username.errors && f.submitted" class="invalid-feedback">
+          <div *ngIf="username.errors['required']">
+            <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+            Le nom est requis
+          </div>
+          <div *ngIf="username.errors['minlength']">
+            <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+            Le nom d'utilisateur doit comporter au moins 3 caractères
+          </div>
+          <div *ngIf="username.errors['maxlength']">
+            <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+            Le nom d'utilisateur doit comporter au maximum 20 caractères
+          </div>
+        </div>
+
+
+
+
+
+        <input type="email" class="formbold-form-input" name="email" placeholder="email" [(ngModel)]="form.email" required
+          email #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+        <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+          <div *ngIf="email.errors['required']">
+            <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+            L'adresse email est requise
+          </div>
+          <div *ngIf="email.errors['email']">
+            <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+            L'e-mail doit être une adresse e-mail valide
+          </div>
+        </div>
+
+
+
+
+
+        <input type="password" class="formbold-form-input" name="password" placeholder="password"
+          [(ngModel)]="form.password" required minlength="6" #password="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+        <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+          <div *ngIf="password.errors['required']">
+            <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+            Mot de passe requise
+          </div>
+          <div *ngIf="password.errors['minlength']">
+            <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+            Le mot de passe doit être au moins de 6 caractères
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <button type="submit" class="orangebutton">Sign Up</button>
+
+
+
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+          Signup failed!<br />{{ errorMessage }}
+        </div>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          Your registration is successful!
+        </div>
+
+
+      </form>
+
+
+      
+
+
+
+    </div>
+
+
+
+    <div class="container">
+
+
+
+      <h2 style="margin-bottom: 30px;">Admin <small>Tous</small></h2>
+
+      
+      <ul class="responsive-table">
+
+        <li class="table-header">
+
+          <div class="col col-1" style="color: rgb(255, 255, 255);"></div> 
+          <div class="col col-2" style="color: rgb(255, 255, 255);">Nom</div> 
+          <div class="col col-2" style="color: rgb(255, 255, 255);">Email</div> 
+          <div class="col col-3" style="text-align: center; color: rgb(255, 255, 255);">Actions</div>
+
+        </li>
+
+        <div style="overflow-y: auto; max-height: 300px;">
+
+          <li class="table-row " *ngFor="let user of users.slice().reverse()"  style="display: flex; align-items: center;">
+
+
+            <div class="col col-1" data-label="Logo">
+              <i class="bi bi-person-fill" style="font-size: 25px; color: rgb(8, 8, 8);"></i>
+            </div>
+
+            <div class="col col-2" data-label="Email"> {{ user.username }} </div> 
+
+
+            <div class="col col-2" data-label="Email"> {{ user.email }} </div> 
+
+            <div class="col col-3" data-label="Actions" style="text-align: center; margin-right: 17px;"> 
+              
+               <button  type="button" class="modifButton" (click)="deleteUser(user.id)">
+                <i class="bi bi-trash-fill" style="font-size: 25px; color: rgb(27, 199, 8);"></i>
+              </button>
+
+               
+              
+            
+            </div> 
+
+            
+
+           
+
+
+
+
+
+          </li>
+
+        </div>
+
+
+
+      </ul>
+
+
+
+    </div>
+
+
+ </div>
+
+</body>

@@ -1,0 +1,126 @@
+ 
+<div class="container">
+
+
+  <div class="right-side-container">
+    <div class="search__container">
+      <input class="search__input" [(ngModel)]="searchValue" type="search" id="searchValue" name="searchValue"
+        placeholder=" Cherchez ...">
+    </div>
+    <div class="cube div">
+      <div class="top div"></div>
+      <div class="div">
+        <span class="span" style="--i: 0">
+          <p><i class="bi bi-buildings-fill" style="font-size: 50px;"></i></p>
+          <p><i class="bi bi-buildings-fill" style="font-size: 50px;"></i></p>
+        </span>
+        <span class="span" style="--i: 1">
+          <p><i class="bi bi-buildings-fill" style="font-size: 50px;"></i></p>
+          <p><i class="bi bi-buildings-fill" style="font-size: 50px;"></i></p>
+        </span>
+        <span class="span" style="--i: 2">
+          <p><i class="bi bi-buildings-fill" style="font-size: 50px;"></i></p>
+          <p><i class="bi bi-buildings-fill" style="font-size: 50px;"></i></p>
+        </span>
+        <span class="span" style="--i: 3">
+          <p><i class="bi bi-buildings-fill" style="font-size: 50px;"></i></p>
+          <p><i class="bi bi-buildings-fill" style="font-size: 50px;"></i></p>
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="cardo">
+
+   
+    <h2 style="color: rgb(183, 168, 245); "> Liste des entreprises <small>tous</small></h2>
+    
+
+    <ul class="responsive-table">
+
+      <li class="table-header">
+
+        <div class="col col-1">Logo</div>
+        <div class="col col-2">Company</div>
+        <div class="col col-3">Adress</div>
+        <div class="col col-4" style="text-align: center;  ">Actions</div>
+        <div class="col col-5">Nombre d'offres</div>
+      </li>
+
+      <div style="overflow-y: auto; max-height: 400px;">
+
+        <li class="table-row" *ngFor="let item of companyService.list | filter: searchValue "
+          style="display: flex; align-items: center;">
+
+          <div class="col col-1" data-label="Logo">
+
+            <img class="card-img-top img-responsive" src="{{'http://localhost:8000/company/Imglogo/'+item.id}}"
+              style="height :45px ;  width:45px; border-radius: 50%;" alt="logo">
+
+          </div>
+
+          <div class="col col-2" data-label="Company" style="color: #101010;"> {{item.companySname}} </div>
+
+          <div class="col col-3" data-label="Adress" style="color: #131313;"> {{item.adress}} </div>
+
+
+          <div class="col col-4" data-label="Actions" style=" text-align: center;">
+
+            
+
+
+            <button class="buttonadd" [routerLink]="['/sidenav/addOfferForm', item.id]">
+              <span style="color: rgb(3, 61, 112);">
+                <i class="bi bi-briefcase-fill"></i>
+                Add
+              </span>
+            </button>
+
+            <button class="buttonDel" (click)="onDelOffer(item.id)">
+              <span style="color: rgb(235, 77, 232);">
+                retirer
+              </span>
+            </button>
+
+            <button (click)="redirectToDetails(item.id)" type="button" class="modifButton" >
+              <i class="bi bi-pencil-fill " style="font-size: 20px; color: rgb(0, 0, 0); "></i>
+            </button>
+
+
+
+
+
+
+
+          </div>
+
+
+          <div class="col col-5" data-label="Nombre d'offres" style="text-align: center; color: rgb(239, 147, 43); ">
+            {{ jobOffersCounts[item.id] }} Offres
+          </div>
+
+
+
+
+
+
+
+
+        </li>
+
+      </div>
+
+
+
+
+
+    </ul>
+
+
+  </div>
+
+
+</div>

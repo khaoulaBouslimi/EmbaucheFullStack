@@ -1,0 +1,92 @@
+/* styles.css or your.component.css */
+.donut-chart {  
+    position: relative; /* Make it a relative container */
+
+  }
+
+  /* Style the legend */
+  .ngx-charts-legend {
+    position: absolute;
+    bottom: 0; /* Position at the bottom */
+    width: 100%; /* Full width */
+    text-align: center; /* Center the legend items */
+    background-color: #f9f9f9; /* Background color */
+    border-top: 1px solid #ccc; /* Optional: Add a top border */
+  }
+  .cardo {
+	padding: 20px;
+	
+	background: rgba(255, 255, 255, 0.05);
+	margin: 10px;
+	margin-bottom: 20px;
+	border-radius: 15px;
+	
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(160, 200, 250, 0.5);
+	box-shadow: 0 0 15px  rgba(160, 200, 250, 0.5);
+}
+.cardo:hover {
+	box-shadow: 0 0 15px  rgba(160, 200, 250, 0.5); 
+  }
+
+  .card-container {
+	display: flex;
+	justify-content: center; /* Center items horizontally */
+    margin-top: 120px; 
+  }
+
+  .card-container2 {
+	display: flex;
+	justify-content: center; /* Center items horizontally */
+    margin-top: 40px; 
+  }
+
+
+
+  .cardo2 {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 10px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(160, 200, 250, 0.5);
+    box-shadow: 0 0 15px rgba(160, 200, 250, 0.5);
+  
+    /* Add a left border with a different color */
+    border-left: 5px solid #6fa5f094; /* You can change the color as needed */
+  }
+  
+.cardo2:hover {
+  box-shadow: 0 0 15px  rgba(160, 200, 250, 0.5); 
+}
+
+.containertotjob {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+  }
+
+ 
+  
+  .containerr {
+    display: flex;
+    align-items: center;
+    border: rgb(44, 61, 11) solid;
+
+     }
+  
+  .image-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 70px;
+    padding-top: 10px; 
+   }
+   .text-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-bottom: 0px;
+    border: yellowgreen solid;
+   }

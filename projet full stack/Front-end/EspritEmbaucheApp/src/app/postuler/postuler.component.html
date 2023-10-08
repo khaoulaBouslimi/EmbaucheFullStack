@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta  content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <header class="header">
+    <!-- Navbar content here -->
+   
+    <nav  class="navbar ">
+      <div class="navbar-logo">
+        <img src="assets/images/esp.png" alt="Logo" >
+      </div>
+      <div class="navbar-links">
+        <ul>
+  
+          <li routerLinkActive="active" >
+            <a routerLink="/home" > Home </a>
+          </li>
+  
+           
+  
+          <li  [routerLinkActive]="['active']">
+            <a routerLink="/jobOffers" > Offres d'emploi </a>
+          </li>
+  
+         
+  
+        </ul>
+      </div>
+
+    </nav>
+    
+    
+  
+  <!--header content-->
+  
+    <div class="box">
+      <form>
+        <strong>
+          <h1> 
+            <span style="color: #000000;  font-family: serif;" >Postuler pour un nouveau Job</span>  
+            <br> 
+           
+            <span style="color: #697687; font-size: 18px; font-family: serif;">
+              <a routerLink="/home" class="nav-link" style="margin-right: 3px;">Home</a> <strong class="nav-dot">&middot;</strong> Postulez
+            </span>
+            
+            
+          </h1>
+          </strong>
+      </form>
+    </div>
+  
+  </header>
+
+
+
+  
+  <div class="cardo">
+    <div class="formbold-main-wrapper">
+      <div class="formbold-form-wrapper">
+
+        
+
+
+        <div class="formbold-form-title" >
+          <h2 >Candidature pour l'offre : <span style="color: royalblue;"> {{ jobTitle }} </span> </h2>
+        </div>
+        <br>
+      
+        
+        <form #formRef="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+          
+          <div class="formbold-input-flex">
+              
+            <div>
+              <label for="nometprenom" class="formbold-form-label">
+                Nom et prénom <span style="color: rgb(90, 225, 31);">*</span>
+              </label>
+              <input
+                type="text"
+                name="nometprenom"
+                id="nometprenom"
+                class="formbold-form-input"
+                placeholder="Votre nom complet ... "
+                [(ngModel)]="nometprenom" 
+                required
+                #nometprenomInput="ngModel"  
+                [ngClass]="{'invalid-input': nometprenomInput.touched && nometprenomInput.invalid}" 
+              />
+              <div class="required-message" *ngIf="nometprenomInput.touched && nometprenomInput.invalid">
+                <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                Ce Champ est requis
+                
+              </div>
+            </div>
+
+        
+
+            <div class="formbold-mb-3">
+              <label for="email" class="formbold-form-label">
+                Adresse email <span style="color: rgb(90, 225, 31);">*</span>
+              </label>
+              
+              <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  [(ngModel)]="email" 
+                  required
+                  class="formbold-form-input"
+                  placeholder="Votre adresse e-mail ... "
+                  #emailInput="ngModel"   
+                  [ngClass]="{'invalid-input': emailInput.touched && emailInput.invalid}" 
+                  (ngModelChange)="checkEmailFormat()"
+                />
+
+                
+                <div class="required-message" *ngIf="emailInput.touched && emailInput.invalid">
+                  <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                  Ce Champ est requis
+                </div>
+                <!-- Display an error message if the email is invalid -->
+                <div *ngIf="invalidEmailFormat" style="text-align: center; font-size: 17px;">
+                  <small class="text-danger">
+                    <i class="bi bi-exclamation-triangle-fill" style="margin-right: 5px;"></i>
+                    Adresse e-mail invalide. Elle doit se terminer par '@esprit.tn'.
+                  </small>
+                </div>
+
+              
+                
+            </div>
+          </div>
+    
+          
+          
+              <div class="formbold-input-flex">
+            <div>
+              <label class="formbold-form-label" for="specialite">
+                  Spécialité <span style="color: rgb(90, 225, 31);">*</span>
+                </label>
+        
+                <select class="formbold-form-select" name="specialite" id="specialite" [(ngModel)]="specialite" required >
+                  <option value="" disabled selected>Selectez une spécialité...</option>
+                  <option value="Informatique" style=" margin-top: 20px;">Informatique</option>
+                  <option value="Télécom" style=" margin-top: 20px;">Télécommunication</option>
+                  <option value="Electro mécanique" style=" margin-top: 20px;">Electro mécanique</option>
+                  <option value="Génie Civil" style=" margin-top: 20px;"> Génie Civil </option>
+                  <option value="Business" style=" margin-top: 20px; margin-bottom: 200px;"> Business </option>
+                  
+                </select>
+                
+            </div>
+
+
+            <div>
+              <label for="option" class="formbold-form-label"> Option <span style="color: rgb(90, 225, 31);">*</span> </label>
+              <input
+                type="text"
+                name="option"
+                id="option"
+                [(ngModel)]="option" required
+                placeholder="Exemple: SE, DS, Cloud ..."
+                class="formbold-form-input"
+                #optionInput="ngModel"  
+                [ngClass]="{'invalid-input': optionInput.touched && optionInput.invalid}" 
+              />
+              <div class="required-message" *ngIf="optionInput.touched && optionInput.invalid">
+                <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                Ce Champ est requis
+                
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="formbold-input-flex">
+
+            <div class="mb-3">
+              <label for="cv"class="formbold-form-label">Votre CV <span style="color: rgb(90, 225, 31);">*</span></label>
+              <input #fileInputRef type="file"  id="cv"   name="cv" (change)="onFileChange($event)" 
+              accept="application/pdf"  
+              required
+              >
+            </div>
+
+
+
+            <div class="mb-3">
+              <label for="cv"class="formbold-form-label">Votre lettre de motivation <span style="color: rgb(90, 225, 31);">*</span></label>
+              <input #fileInputRefLM type="file"  id="lettreMotivation"   name="lettreMotivation" (change)="onLettreMotivationFileChange($event)" 
+              accept="application/pdf"  
+              required
+              >
+            </div>
+
+
+
+
+          </div>
+    
+          
+          <button type="submit"  >
+            <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path
+                            d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                            fill="currentColor"></path>
+                    </svg>
+                </div>
+            </div>
+            <span>Postulez !</span>
+        </button>
+
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="left-content">
+        <p>2023 &copy; All Rights Reserved -- Khaoula Bouslimi</p>
+      </div>
+      <div class="right-content">
+        <div class="follow-us">
+            <p>Suivez nous sur:</p>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/esprit.tn"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/esprit_ingenieur/"><i class="fab fa-instagram"></i></a>
+              <a href="https://twitter.com/i/flow/login?redirect_after_login=%2FEsprit_News"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.youtube.com/channel/UCJ5wuQ9AQYtpf9Arieu3iXA"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.linkedin.com/company/esprit_2"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+      </div>
+    </div>
+</footer>
+</body>
+ 
+</html>
+
+
+
+
+

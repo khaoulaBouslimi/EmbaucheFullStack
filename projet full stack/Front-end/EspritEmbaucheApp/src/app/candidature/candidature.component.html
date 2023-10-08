@@ -1,0 +1,63 @@
+ 
+
+
+  <div class="container">
+    <button (click)="redirectToAdminDashboard()" class="close-button">
+      <i class="bi bi-arrow-left-circle-fill" style="font-size: 50px;"></i>
+    </button>
+    
+
+    <h2>Liste des candidatures pour l'offre : <br> <span style="color: rgb(233, 62, 62);"> {{ jobOffer?.jobTitle }} </span>  <small>tous</small></h2>
+  
+    <ul class="responsive-table" >
+  
+      <li class="table-header">
+  
+        <div class="col col-4">Nom et Prénom</div>
+        <div class="col col-3">Email</div>
+        <div class="col col-4">Spécialité</div>
+        <div class="col col-2">Option</div>
+        <div class="col col-1">CV</div>
+        <div class="col col-1">Motivation</div>
+
+      </li>
+  
+      <div style="overflow-y: auto; max-height: 400px;">
+      
+        <li class="table-row" *ngFor="let item of candidatures.slice().reverse()" style="display: flex; align-items: center;"  >
+  
+        
+    
+          
+          <div class="col col-4" data-label="Nom et Prénom" style="color: #101010;"> {{item.nometprenom}} </div>
+    
+          <div class="col col-3" data-label="Email" style="color: #131313;"> {{item.email}} </div>
+
+          <div class="col col-4" data-label="Spécialité" style="color: #101010;"> {{item.specialite}} </div>
+    
+          <div class="col col-2" data-label="Option" style="color: #131313;"> {{item.option}} </div>
+    
+          <div class="col col-1" data-label="CV">  
+
+            <button type="button" class="modifButton col-1" (click)="downloadFile(item.idCandidature)" style="top: -20px;">
+              <i class="bi bi-cloud-arrow-down-fill" style="font-size: 40px;  "></i>
+            </button> 
+          </div>
+
+          <div class="col col-1" data-label="Motivation">  
+
+            <button type="button" class="modifButton col-1" (click)="downloadLettreMotivation(item.idCandidature)"  style="top: -20px;">
+              <i class="bi bi-cloud-arrow-down-fill" style="font-size: 40px; margin-left: 23px; color: rgb(0, 0, 0); "></i>
+            </button> 
+          </div>
+    
+        </li>
+      
+      </div>
+  
+      
+  
+  
+  
+    </ul>
+  </div>

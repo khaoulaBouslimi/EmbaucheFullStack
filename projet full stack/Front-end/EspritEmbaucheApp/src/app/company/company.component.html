@@ -1,0 +1,197 @@
+<section>
+
+
+  <div class="container">
+    <form  [formGroup]="this.companyService.dataForm" (ngSubmit)="addData()">
+
+
+
+      <!------------------------------------------------------------- Card 1 -------------------------------------------------->
+      <div>
+        <div class="canvas mb-5 mb-5 mb-5">
+
+          <!-- bordure orangé -->
+          <div class="canvas_borderToRig mb-3">
+            <svg>
+              <defs>
+                <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:rgb(153,75,23);stop-opacity:1"></stop>
+                  <stop offset="100%" style="stop-color:rgb(253,137,68);stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#D34F48"></stop>
+                  <stop offset="100%" stop-color="#772522"></stop>
+                </linearGradient>
+              </defs>
+              <rect id="rect-grad" class="rect-gradient" fill="none" stroke="url(#grad-orange)" stroke-linecap="square"
+                stroke-width="4" stroke-miterlimit="30" width="100%" height="100%"></rect>
+            </svg>
+          </div>
+          <!-- / bordure orangé -->
+          <div class="card mb-4 ">
+
+            <div class="content">
+
+              <label for="imageInput" class="rounded-image-input">
+                <input type="file" id="imageInput" accept="image/*" (change)="onSelectFileround($event)">
+                <div class="upload-icon">
+                  <i class="bi bi-cloud-arrow-up-fill"></i>
+                </div>
+                <div class="preview-container" *ngIf="imgURL">
+                  <img [src]="imgURL" class="rounded-image-preview">
+                </div>
+              </label>
+              
+
+              
+
+              <div class="mb-3">
+                  <label class="formbold-form-label" for="companySname">
+                    <strong>Nom de l'entreprise : <span class="obligatoire">*</span> </strong>
+                  </label>
+                  <div class="input-container">
+                    <input 
+                      type="text" 
+                      name="companySname" 
+                      id="companySname" 
+                      class="form__input"
+                      placeholder="Nom de l'entreprise.." 
+                      formControlName="companySname"
+                      [class.invalid-field]="companyService.dataForm.get('companySname')?.invalid && companyService.dataForm.get('companySname')?.touched"
+                    >
+                    <div *ngIf="companyService.dataForm.get('companySname')?.invalid && companyService.dataForm.get('companySname')?.touched" class="error-message">
+                      <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                      Ce champs !
+                    </div>
+                  </div>
+                  
+
+              </div>
+
+
+              <div class="mb-3 ">
+                <label for="nbrEmployees" class="formbold-form-label">
+                  <strong>Nombre d'emplyées: <span class="obligatoire">*</span> </strong>
+                </label>
+
+                <div class="input-container">
+
+                  <select name="nbrEmployees" id="nbrEmployees" class="form__input" 
+                  formControlName="nbrEmployees" 
+                  
+                  [class.invalid-field]="companyService.dataForm.get('nbrEmployees')?.invalid && companyService.dataForm.get('nbrEmployees')?.touched"
+                  >
+                  <option selected>Select an option..</option>
+                  <option value="De 1 à 50 emplyées">De 1 à 50 emplyées</option>
+                  <option value="De 50 à 150 emplyées">De 50 à 150 emplyées</option>
+                  <option value="De 150 à 250 emplyées">De 150 à 250 emplyées</option>
+                  <option value="De 250 à 500 emplyées">De 250 à 500 emplyées</option>
+                  <option value="De 500 à 750 emplyées">De 500 à 750 emplyées</option>
+                  <option value="De 750 à 1000 emplyées">De 750 à 1000 emplyées</option>
+                  <option value="Plus que 1000 emplyées">Plus que 1000 emplyées</option>
+                  
+                  </select>
+                  <div *ngIf="companyService.dataForm.get('nbrEmployees')?.invalid && companyService.dataForm.get('nbrEmployees')?.touched" class="error-message">
+                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                    Choisissez !
+                  </div>
+
+                </div>
+
+                
+              </div>
+
+              
+
+              <div class=" mb-3">
+                <label class="formbold-form-label" for="adress">
+                  <strong>Adresse: <span class="obligatoire">*</span> </strong>
+                </label>
+                <div class="input-container">
+                  <input 
+                  type="text" 
+                  name="adress" 
+                  id="adress" 
+                  class="form__input" 
+                  placeholder="Adresse de l'entreprise.."
+                  formControlName="adress"
+               
+                  [class.invalid-field]="companyService.dataForm.get('adress')?.invalid && companyService.dataForm.get('adress')?.touched"
+                  >
+                  <div *ngIf="companyService.dataForm.get('adress')?.invalid && companyService.dataForm.get('adress')?.touched" class="error-message">
+                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                    Ce champs !
+                  </div>
+                </div>
+
+           
+                
+              </div>
+
+              <div class=" mb-3">
+                <label class="formbold-form-label" for="numTel">
+                  <strong>Numéro GSM: <span class="obligatoire">*</span> </strong>
+                </label>
+                <div class="input-container">
+
+                  <input 
+                  type="tel" 
+                  name="numTel" 
+                  id="numTel" 
+                  class="form__input" 
+                  placeholder="Tél.."
+                  formControlName="numTel"
+                  [class.invalid-field]="companyService.dataForm.get('numTel')?.invalid && companyService.dataForm.get('numTel')?.touched"
+                  >
+                  <div *ngIf="companyService.dataForm.get('numTel')?.invalid && companyService.dataForm.get('numTel')?.touched" class="error-message">
+                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                    Ce champs !
+                  </div>
+
+
+                </div>
+                
+              </div>
+
+
+
+
+              <button class="cta" type="submit">
+                <span>Next</span>
+                <svg viewBox="0 0 13 10" height="10px" width="15px">
+                  <path d="M1,5 L11,5"></path>
+                  <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+              </button>
+
+
+
+            </div>
+            
+            
+          </div>
+          <!-- ecriture à coté-->
+          <div class="canvas_copy canvas_copy--right">
+            <span class="canvas_copy_subtitle">Provide</span>
+            <br>
+            <strong class="canvas_copy_title">Some</strong>
+            <br>
+            <span class="canvas_copy_details">Companys ' Details </span>
+          </div>
+          <!-- / ecriture à coté-->
+        </div>
+      </div>
+      <!------------------------------------------------------------------------------------------------------------------------------->
+
+
+    </form>
+    <br>
+
+
+    
+  </div>
+</section>
+
+
+
+

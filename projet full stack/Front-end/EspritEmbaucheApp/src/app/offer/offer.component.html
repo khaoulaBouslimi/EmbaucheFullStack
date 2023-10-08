@@ -1,0 +1,787 @@
+ 
+
+
+<div *ngIf="selectedSection === 'section1'" id="section1">
+  
+  <section >
+
+
+    <div class="container">
+
+      <button (click)="redirectToAdminDashboard()" class="close-button"> 
+        <i class="bi bi-x-circle-fill" style="font-size: 50px;"></i>
+      </button>
+
+      <form #addOfferForm="ngForm"  (ngSubmit)="addJobOfferToCompany(companyId, jobOffer)">
+
+        <!--
+                <img src="/assets/images/h.png"  alt="hire" style="float:right">
+              -->
+
+        <!-- form title-->
+        <div class="formbold-form-title">
+
+
+
+          <h2 class="">Créer des Offres </h2>
+          <p>
+            Créez votre descriptions de poste prêtes à l'emploi pour vous démarquer et attirer les bons candidats.
+          </p>
+        </div>
+        <!-- /form title-->
+
+        <!------------------------------------------------------------- Card 2 -------------------------------------------------->
+
+        <div class="canvas mb-5 mb-5 mb-5">
+          <!-- bordure orangé -->
+          <div class="canvas_border mb-3">
+            <svg>
+              <defs>
+                <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:rgb(253,137,68);stop-opacity:1"></stop>
+                  <stop offset="100%" style="stop-color:rgb(153,75,23);stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#D34F48"></stop>
+                  <stop offset="100%" stop-color="#772522"></stop>
+                </linearGradient>
+              </defs>
+              <rect id="rect-grad" class="rect-gradient" fill="none" stroke="url(#grad-orange)" stroke-linecap="square"
+                stroke-width="4" stroke-miterlimit="30" width="100%" height="100%"></rect>
+            </svg>
+          </div>
+          <!-- / bordure orangé -->
+
+          <div class="card mb-4">
+            <div class="content">
+
+              <div class="image-container-right">
+
+                <img class="card-img-top img-responsive"
+     [src]="company?.id ? 'http://localhost:8000/company/Imglogo/' + company.id : ''"
+     style="height: 100px; width: 100px; 
+            border-radius: 50%; 
+            box-shadow: 0 2px 4px #536387; 
+            margin-right: 15px;"
+     alt="logo"
+>
+
+
+              </div>
+              
+
+              <div class=" mb-3">
+                <label class="formbold-form-label" for="jobTitle">
+                  <strong>Titre: <span class="obligatoire">*</span> </strong>
+                </label>
+                <div class="input-container">
+
+                  <input [(ngModel)]="jobOffer.jobTitle" 
+                  type="text" 
+                  name="jobTitle" 
+                  id="jobTitle" 
+                  class="form__input form-control" 
+                  placeholder="Titre de l'offre" 
+                  required
+                  #jobTitleInput="ngModel">
+
+                  <div *ngIf="isJobTitleInvalid && (jobTitleInput?.invalid || jobTitleInput?.errors?.['required'])"
+                  class="error-message">
+                  <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                  Obligatoire
+                  </div>
+                </div>
+                
+                  
+              </div>
+
+ 
+              <div class="mb-3">
+                <label class="formbold-form-label" for="jobType">
+                  <strong>Type du contrat: <span class="obligatoire">*</span> </strong>
+                </label>
+                <div class="input-container">
+                  <input [(ngModel)]="jobOffer.jobType" 
+                  type="text" 
+                  name="jobType" 
+                  id="jobType" 
+                  class="form__input form-control"  
+                  placeholder="Type du contrat.." 
+                  required
+                  #jobTypeInput="ngModel">
+
+                  <div *ngIf="isJobTypeInvalid && (jobTypeInput?.invalid || jobTypeInput?.errors?.['required'])"
+                  class="error-message">
+                  <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                  Obligatoire
+                  </div>
+                </div>
+                
+                  
+                 
+              </div>
+
+
+
+
+              <!--bch nlemhom-->
+
+              <div class="lab-container">
+                <div class="mb-3">
+                  <label class="formbold-form-label" for="expLevel"> 
+                    <strong>Expériences requise: <span class="obligatoire">*</span> </strong>
+                  </label>
+                  <div class="input-container">
+
+                    <input [(ngModel)]="jobOffer.expLevel" 
+                    type="text" 
+                    name="expLevel" 
+                    id="expLevel" 
+                    class="form__inputex form-control" 
+                    placeholder="Expériences requises.." 
+                    required
+                    #expLevelInput="ngModel">
+
+                    <div *ngIf="isExpLevelInvalid && (expLevelInput?.invalid || expLevelInput?.errors?.['required'])"
+                    class="error-message">
+                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                    Obligatoire
+                    </div>
+
+                  </div>
+                  
+                    
+                </div>
+                
+
+
+                <div class=" mb-3">
+                  <label class="formbold-form-label">
+                    <strong>Durée de l'offre: <span class="obligatoire">*</span> </strong>
+                  </label>
+
+                  <mat-form-field style="margin-top: 8px;">
+                    <mat-label>Période</mat-label>
+                    <mat-date-range-input [rangePicker]="datePicker" >
+                      <input matStartDate [(ngModel)]="jobOffer.startDate" name="startDate" placeholder="Date du début..." required #startDateInput >
+                      <input matEndDate [(ngModel)]="jobOffer.endDate" name="endDate" placeholder="End Date" required #endDateInput>
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #datePicker></mat-date-range-picker>
+                  </mat-form-field>
+                
+
+
+
+
+                  
+                
+                  
+
+                    
+                    
+                </div>
+
+              </div>
+
+
+
+
+            </div>
+
+          </div>
+
+          <!-- ecriture à coté-->
+          <div class="canvas_copy canvas_copy--left">
+            <span class="canvas_copy_subtitle">provide</span>
+            <br>
+            <strong class="canvas_copy_title">Basic</strong>
+            <br>
+            <span class="canvas_copy_details">Informations</span>
+          </div>
+          <!-- / ecriture à coté-->
+        </div>
+
+        <!------------------------------------------------------------------------------------------------------------------------>
+
+
+        <!------------------------------------------------------------- Card 2 -------------------------------------------------->
+        <div class="canvas mb-5 mb-5">
+          <!-- bordure orangé -->
+          <div class="canvas_borderToRig mb-3">
+            <svg>
+              <defs>
+                <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:rgb(253,137,68);stop-opacity:1"></stop>
+                  <stop offset="100%" style="stop-color:rgb(153,75,23);stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#D34F48"></stop>
+                  <stop offset="100%" stop-color="#772522"></stop>
+                </linearGradient>
+              </defs>
+              <rect id="rect-grad" class="rect-gradient" fill="none" stroke="url(#grad-orange)" stroke-linecap="square"
+                stroke-width="4" stroke-miterlimit="30" width="100%" height="100%"></rect>
+            </svg>
+          </div>
+          <!-- / bordure orangé -->
+
+          <div class="card mb-4">
+            <div class="content">
+
+
+
+            <label class="formbold-form-label"  style="margin-top: 20px;">
+              <strong>Description de l'offre: <span class="obligatoire">*</span> </strong>
+            </label>
+            <angular-editor
+                    [(ngModel)]="jobOffer.description"
+                    [config]="editorConfig"
+                    name="description" 
+                    id="description"  
+                    placeholder="Description de l'offre ..." 
+                    required
+                    #descriptionInput="ngModel"
+            ></angular-editor>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+          <!-- ecriture à coté-->
+          <div class="canvas_copy canvas_copy--right">
+            <span class="canvas_copy_subtitle">provide</span>
+            <strong class="canvas_copy_title">Basic</strong>
+            <br>
+            <span class="canvas_copy_details">Informations</span>
+          </div>
+          <!-- / ecriture à coté-->
+        </div>
+
+ 
+
+
+
+        <!------------------------------------------------------------------------------------------------------------------------>
+
+
+
+        <!------------------------------------------------------------- Card 4 -------------------------------------------------->
+
+        <div class="canvas mb-5 mb-5 mb-5">
+          <!-- bordure orangé -->
+          <div class="canvas_border mb-3">
+            <svg>
+              <defs>
+                <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:rgb(253,137,68);stop-opacity:1"></stop>
+                  <stop offset="100%" style="stop-color:rgb(153,75,23);stop-opacity:1"></stop>
+                </linearGradient>
+                <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#D34F48"></stop>
+                  <stop offset="100%" stop-color="#772522"></stop>
+                </linearGradient>
+              </defs>
+              <rect id="rect-grad" class="rect-gradient" fill="none" stroke="url(#grad-orange)" stroke-linecap="square"
+                stroke-width="4" stroke-miterlimit="30" width="100%" height="100%"></rect>
+            </svg>
+          </div>
+          <!-- / bordure orangé -->
+
+          <div class="card mb-4">
+            <div class="content">
+              
+              <div class="image-container-right">
+<!--
+                <img class="card-img-top img-responsive"
+                src="{{ 'http://localhost:8000/company/Imglogo/' + company?.id }}" 
+                style="height: 100px; width: 100px; 
+                        border-radius: 50%; 
+                        box-shadow: 0 2px 4px #536387; 
+                        margin-right: 15px; 
+                        margin-bottom: 20px;
+                        
+                        "
+                alt="logo"
+                >
+-->
+
+                <img class="card-img-top img-responsive"
+                    [src]="company?.id ? 'http://localhost:8000/company/Imglogo/' + company.id : ''"
+                    style="height: 100px; width: 100px; 
+                            border-radius: 50%; 
+                            box-shadow: 0 2px 4px #536387; 
+                            margin-right: 15px;"
+                    alt="logo"
+                >
+
+              </div>
+
+              <div class="mb-3">
+                <label class="formbold-form-label" for="country">
+                  <strong>Ville: <span class="obligatoire">*</span> </strong>
+                </label>
+
+                <div class="input-container">
+                  <input [(ngModel)]="jobOffer.country" 
+                  type="text" 
+                  name="country" 
+                  id="country" 
+                  autocomplete="country"
+                  class="form__input form-control" 
+                  placeholder="Ville.." 
+                  required 
+                  #countryInput="ngModel">
+
+                  <div *ngIf="isCountryInvalid && (countryInput?.invalid || countryInput?.errors?.['required'])"
+                      class="error-message">
+                      <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                      Obligatoire
+                  </div>
+
+
+
+                </div>
+                
+                
+
+                <!--
+                  <div *ngIf="addOfferForm.controls['country']?.errors?.['required'] && addOfferForm.controls['country']?.touched" class="error-message">
+                  Veuillez tapez la ville...
+                  </div>
+                -->
+              </div>
+
+              <div class="mb-3">
+                <label class="formbold-form-label" for="language">
+                  <strong>Langues: <span class="obligatoire">*</span> </strong>
+                </label>
+
+                <div class="input-container">
+
+                  <input [(ngModel)]="jobOffer.language" 
+                  type="text" 
+                  name="language" 
+                  id="language" 
+                  class="form__input form-control" 
+                  placeholder="Langues requises.." 
+                  required
+                  #languageInput="ngModel">
+
+                  <div *ngIf="isLanguageInvalid && (languageInput?.invalid || languageInput?.errors?.['required'])"
+                  class="error-message ">
+                  <i class="bi bi-exclamation-triangle-fill" style="font-size: 18px; margin-right: 5px;"></i>
+                    Obligatoire
+                  </div>
+                  
+                </div>
+                
+
+
+                  
+                  
+                
+              </div>
+
+              <div class="mb-3">
+                <label class="formbold-form-label" for="websiteLink">
+                  <strong>Veuillez postuler uniquement via ce lien: </strong>
+                </label>
+                <input type="url" name="websiteLink" id="websiteLink"
+                    placeholder="https://example.com"
+                    pattern="http://.*" size="30"
+                    required
+                    class="form__input form-control"
+                    [(ngModel)]="jobOffer.websiteLink"
+                    
+                    
+                  >
+
+                  
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <!-- ecriture à coté-->
+          <div class="canvas_copy canvas_copy--left">
+            <span class="canvas_copy_subtitle">provide</span>
+            <br>
+            <strong class="canvas_copy_title">Basic</strong>
+            <br>
+            <span class="canvas_copy_details">Informations</span>
+          </div>
+          <!-- / ecriture à coté-->
+        </div>
+
+        <!------------------------------------------------------------------------------------------------------------------------>
+
+
+        <div class="button-container">
+        <!--
+<button type="submit">Add Job Offer</button>
+
+<button routerLink="." fragment="section2" (click)="navigateToSection('section2')" class="formbold-btn"> Section 2 </button>
+        
+        -->
+
+        <button class="btn" (click)="redirectToAdminDashboard()">
+          <div class="wrapper">
+              <p class="text"> <strong> Retour </strong> </p>
+      
+              <div class="flower flower1">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower2">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower3">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower4">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower5">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower6">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+          </div>
+        </button>
+    
+    
+        
+
+        <button class="btn" type="submit"  >
+          <div class="wrapper">
+              <p class="text"> <strong><span style="color: rgb(0, 0, 0);"> Publier </span></strong> </p>
+      
+              <div class="flower flower1">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower2">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower3">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower4">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower5">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+              <div class="flower flower6">
+                  <div class="petal one"></div>
+                  <div class="petal two"></div>
+                  <div class="petal three"></div>
+                  <div class="petal four"></div>
+              </div>
+          </div>
+      </button>
+
+      <button class="btn" routerLink="." fragment="section2" (click)="navigateToSection('section2')">
+        <div class="wrapper">
+            <p class="text"> <strong><span style="color: rgb(0, 0, 0);">Next</span></strong> </p>
+    
+            <div class="flower flower1">
+                <div class="petal one"></div>
+                <div class="petal two"></div>
+                <div class="petal three"></div>
+                <div class="petal four"></div>
+            </div>
+            <div class="flower flower2">
+                <div class="petal one"></div>
+                <div class="petal two"></div>
+                <div class="petal three"></div>
+                <div class="petal four"></div>
+            </div>
+            <div class="flower flower3">
+                <div class="petal one"></div>
+                <div class="petal two"></div>
+                <div class="petal three"></div>
+                <div class="petal four"></div>
+            </div>
+            <div class="flower flower4">
+                <div class="petal one"></div>
+                <div class="petal two"></div>
+                <div class="petal three"></div>
+                <div class="petal four"></div>
+            </div>
+            <div class="flower flower5">
+                <div class="petal one"></div>
+                <div class="petal two"></div>
+                <div class="petal three"></div>
+                <div class="petal four"></div>
+            </div>
+            <div class="flower flower6">
+                <div class="petal one"></div>
+                <div class="petal two"></div>
+                <div class="petal three"></div>
+                <div class="petal four"></div>
+            </div>
+        </div>
+    </button>
+
+        </div>
+
+
+
+        
+
+
+      </form>
+    </div>
+  </section>
+
+</div>
+
+
+
+
+<div *ngIf="selectedSection === 'section2'" id="section2">
+  <!-- content for section 2 -->
+  
+  <div class="card-container">
+    <div class="cardo" #offerSection>
+      
+
+      <h1>
+        <div class="d-flex align-items-center ">
+          
+            
+          
+          <span class="formbold-form-label" style="font-size: 26px;"><strong>{{ company?.companySname }} recrute</strong></span>
+
+          
+        </div>
+        
+      </h1>
+
+      
+      <p>Chers étudiants,</p>
+      <p>Nous avons le plaisir de vous annoncer une nouvelle opportunité d'emploi au sein de <strong>{{ company?.companySname }}</strong> . Nous sommes convaincus que vous possédez les compétences et qualifications nécessaires pour occuper ce poste.</p>
+      
+      <ul>
+        <li>
+
+          <h3> 
+            <span class="formbold-form-label"> <strong>Titre du poste:</strong> {{jobOffer.jobTitle}} </span>  
+          </h3>
+
+        </li>
+      </ul>
+      
+      <span style="color: #64bebf; font-size: 16px; margin-right: 5px; ">
+        <i class="bi bi-geo-fill"></i>
+      </span>  {{ jobOffer.country }}
+      
+      
+      <div style="margin-top: 15px;">
+
+        <ul>
+          <li>
+  
+            <h3> 
+              <span class="formbold-form-label"> <strong>Description du poste :</strong> </span>  
+            </h3>
+  
+          </li>
+        </ul>
+
+        <p> 
+          <span style="color: #64bebf; font-size: 16px; margin-right: 5px;">
+            <i class="fa-solid fa-suitcase"></i>
+          </span> {{jobOffer.jobType}} </p>  
+        <div [innerHTML]="jobOffer.description"></div>
+
+      </div>
+
+      <div style="margin-top: 15px;">
+        <ul>
+          <li>
+  
+            <h3> 
+              <span class="formbold-form-label"> <strong>Exigences :</strong> </span>  
+            </h3>
+  
+          </li>
+        </ul>
+
+        <ul>
+          <li>Niveau d'expérience requis : {{jobOffer.expLevel}}  </li>
+          <li>Langue : {{jobOffer.language}}</li>
+        </ul>
+      </div>
+      <h4 style="margin-top: 15px;"> 
+        <span class="formbold-form-label"> <strong>Durée de l'offre : {{ (jobOffer.endDate | date:'dd/MM/yyyy') + ' - ' + (jobOffer.startDate | date:'dd/MM/yyyy') }}
+          </strong> </span> 
+      </h4>
+      
+      <p>Si vous êtes intéressé(e) et pensez être le candidat idéal pour ce poste, nous vous invitons à soumettre votre candidature à <a [href]="jobOffer.websiteLink" target="_blank" rel="noopener noreferrer">{{ jobOffer.websiteLink }}</a>.</p>
+      <p>Nous sommes impatients de vous entendre !</p>
+      <p>Cordialement,</p>
+
+      
+
+    </div>
+  </div>
+  
+
+  <div class="button-container">
+
+    <!--
+          <button routerLink="." fragment="section1" (click)="navigateToSection('section1')" class="formbold-btn"> section 1 </button>
+
+          <button (click)="sendSectionToEmail()" class="formbold-btn">Send Section</button>
+
+    -->
+    <button class="btn" routerLink="." fragment="section1" (click)="navigateToSection('section1')" >
+      <div class="wrapper">
+          <p class="text"> <strong> Retour </strong> </p>
+  
+          <div class="flower flower1">
+              <div class="petal one"></div>
+              <div class="petal two"></div>
+              <div class="petal three"></div>
+              <div class="petal four"></div>
+          </div>
+          <div class="flower flower2">
+              <div class="petal one"></div>
+              <div class="petal two"></div>
+              <div class="petal three"></div>
+              <div class="petal four"></div>
+          </div>
+          <div class="flower flower3">
+              <div class="petal one"></div>
+              <div class="petal two"></div>
+              <div class="petal three"></div>
+              <div class="petal four"></div>
+          </div>
+          <div class="flower flower4">
+              <div class="petal one"></div>
+              <div class="petal two"></div>
+              <div class="petal three"></div>
+              <div class="petal four"></div>
+          </div>
+          <div class="flower flower5">
+              <div class="petal one"></div>
+              <div class="petal two"></div>
+              <div class="petal three"></div>
+              <div class="petal four"></div>
+          </div>
+          <div class="flower flower6">
+              <div class="petal one"></div>
+              <div class="petal two"></div>
+              <div class="petal three"></div>
+              <div class="petal four"></div>
+          </div>
+      </div>
+    </button>
+
+
+  <button class="btn" (click)="sendSectionToEmail()">
+    <div class="wrapper">
+        <p class="text"> <strong>Envoyer par Email</strong> </p>
+
+        <div class="flower flower1">
+            <div class="petal one"></div>
+            <div class="petal two"></div>
+            <div class="petal three"></div>
+            <div class="petal four"></div>
+        </div>
+        <div class="flower flower2">
+            <div class="petal one"></div>
+            <div class="petal two"></div>
+            <div class="petal three"></div>
+            <div class="petal four"></div>
+        </div>
+        <div class="flower flower3">
+            <div class="petal one"></div>
+            <div class="petal two"></div>
+            <div class="petal three"></div>
+            <div class="petal four"></div>
+        </div>
+        <div class="flower flower4">
+            <div class="petal one"></div>
+            <div class="petal two"></div>
+            <div class="petal three"></div>
+            <div class="petal four"></div>
+        </div>
+        <div class="flower flower5">
+            <div class="petal one"></div>
+            <div class="petal two"></div>
+            <div class="petal three"></div>
+            <div class="petal four"></div>
+        </div>
+        <div class="flower flower6">
+            <div class="petal one"></div>
+            <div class="petal two"></div>
+            <div class="petal three"></div>
+            <div class="petal four"></div>
+        </div>
+    </div>
+  </button>
+  </div>
+  
+  
+
+
+</div>
+
+

@@ -1,0 +1,39 @@
+:host ::ng-deep .y.axis text {
+    fill: #120366; /* Replace with your desired color */
+  }
+
+  :host ::ng-deep .x.axis text {
+    fill: #120366; /* Replace with your desired color */
+  }
+  
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 950px; 
+  }
+  
+  .heading {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+
+  .cardo {
+	padding: 20px;
+	width: 900px;
+	background: rgba(255, 255, 255, 0.05);
+	margin: 10px;
+	margin-bottom: 20px;
+	border-radius: 15px;
+	
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(160, 200, 250, 0.5);
+	box-shadow: 0 0 15px  rgba(160, 200, 250, 0.5);
+}
+
+
+ .cardo h2 {
+	color: #333;
+  }

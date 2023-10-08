@@ -1,0 +1,135 @@
+<div class="containerapp">
+  <app-charts></app-charts>
+  <app-gauge-chart></app-gauge-chart>
+</div>
+
+<div class="cardo">
+
+  <div class="search__container">
+    <input class="search__input" [(ngModel)]="searchValue" type="search" name="searchValue" placeholder=" Cherchez ...">
+  </div>
+
+  <div class="container">
+
+
+
+    <h2 style="margin-bottom: 30px;">Les offres d'emploi <small>Tous</small></h2>
+
+    
+    <ul class="responsive-table">
+
+      <li class="table-header">
+        <div class="col col-1">Logo</div>
+        <div class="col col-2">Entreprise</div>
+        <div class="col col-3">Job Title</div>
+        <div class="col col-4">Etat</div>
+        <div class="col col-4">Desac/Act</div>
+        <div class="col col-5" style="text-align: center;">Actions</div>
+
+      </li>
+
+      <div style="overflow-y: auto; max-height: 400px;">
+
+        <li class="table-row " *ngFor="let o of jobOffers.slice().reverse()  | filter: searchValue "
+          style="display: flex; align-items: center;">
+
+
+          <div class="col col-1" data-label="Logo">
+            <img class="card-img-top img-responsive" [src]="getLogoUrl(o?.companyId)"
+              style="height :50px; width:50px; border-radius: 50%; border: rgba(136, 148, 237, 0.4) 1px solid; " alt="logo">
+          </div>
+
+          <div class="col col-2" data-label="Entreprise">{{o.companySname}} </div>
+
+          <div class="col col-3" data-label="Job Title"> {{o.jobTitle}} </div>
+
+          <div class="col col-4" data-label="Etat" style="margin-left:2em;">
+<!--  <span *ngIf="o.hasExceededDuration" style="display: flex; align-items: center;"> -->
+            <span *ngIf="hasJobOfferExpired(o)" style="display: flex; align-items: center;">
+
+              <span class="badge badge-success rounded-pill d-inline"
+                style="background-color: #ecc6f0f2; font-size: 15px; color: #bd219e;">
+                Expirée
+              </span>
+
+            </span>
+
+            <span *ngIf="!hasJobOfferExpired(o)" style="display: flex; align-items: center;">
+
+              <span class="badge badge-success rounded-pill d-inline"
+                style="background-color: #d0f1e0; font-size: 15px; color: #346a5a;">
+                Active
+              </span>
+
+            </span>
+
+
+          
+          </div>
+          
+
+          <div class="col col-4" data-label="Desac/Act" style="margin-left:2em; " >
+ 
+           
+            <div class="button r" id="button-3">
+              <!--o.activejoboffer-->
+              <input type="checkbox" class="checkbox" name="checkbox" [checked]=" !hasJobOfferExpired(o)  " (click)="toggleVisibility(o.idJobOffer)">
+              <div class="knobs"></div>
+              <div class="layer"></div>
+            </div>
+        
+           
+          </div>
+
+          <div class="col col-5" data-label="Delete">
+
+            <div class="input-container">
+
+              <button (click)="onDelOffer(o.idJobOffer)" type="button" class="modifButton">
+                <i class="bi bi-trash3-fill" style="font-size: 20px; color: #21bd24;"></i>
+              </button>
+              <!--
+              <button [routerLink]="['/sidenav/candidaturesList', o.idJobOffer]">View Candidatures</button>
+              
+               -->
+
+               
+
+
+              <button [routerLink]="['/sidenav/candidaturesList', o.idJobOffer]" class="buttonCandidat">
+                <i class="bi bi-people-fill" style="margin-right: 3px;"></i>
+                <strong>Candidats</strong>
+
+              </button>
+
+              <button (click)="redirectToDetails(o.idJobOffer)" type="button" class="modifButton" >
+                <i class="bi bi-pencil-fill " style="font-size: 20px; color: rgb(141, 7, 7); "></i>
+              </button>
+              
+
+            </div>
+
+
+          </div>
+
+
+
+
+
+        </li>
+
+      </div>
+
+
+
+    </ul>
+
+
+
+  </div>
+
+</div>
+
+
+<app-contacts></app-contacts> 
+ 

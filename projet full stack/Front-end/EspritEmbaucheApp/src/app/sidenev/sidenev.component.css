@@ -1,0 +1,82 @@
+ 
+
+/* Hide scrollbar for Firefox */
+* {
+    scrollbar-width: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge, and Opera */
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+mat-toolbar {
+    background: #004a9f;
+    color: white;
+}
+mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    /*
+    background: linear-gradient(to bottom, #5c0300, #8a0606);
+    */
+    background: #5c0300;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+.content {
+    height: calc(97vh );
+    border-radius: 10px;
+    margin: 10px;
+    margin-left: 32px;
+    overflow: auto;   
+    background-color: #ffffff;
+
+}
+mat-sidenav-container {
+    /*height: calc(100vh - 65px);*/
+    height: calc(100vh); 
+     
+}
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+}
+.menu-button mat-icon {
+    margin-right: 8px;
+}
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.name {
+    margin-top: 20px;
+    font-weight: normal;
+    font-size: 20px;
+}
+.designation {
+    margin-top: 2px;
+    font-size: 12px;
+    color: lightgrey;
+}
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.shadowed-sidenav {
+    box-shadow: 0 0 10px rgba(105, 3, 3, 0.2);
+  }
+  
+
+
+  

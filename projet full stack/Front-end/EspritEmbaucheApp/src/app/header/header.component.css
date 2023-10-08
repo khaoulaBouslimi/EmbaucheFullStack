@@ -1,0 +1,276 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: transparent;
+  border: #000 solid;
+
+  /* background-color: rgb(255, 255, 255); background-color: transparent; 
+    transition: background-color 0.3s ease-in-out;
+  */
+
+}
+
+
+
+
+.nav-link, .nav-dot {
+  display: inline;
+}
+.nav-link:hover {
+  color: #cc0909; 
+}
+
+.navbar-logo {
+  margin-left: 30px;
+ 
+}
+
+.navbar-logo img {
+  height: 40px;
+}
+
+.navbar-links {
+  flex-grow: 1;
+  font-size: 15px;
+
+}
+
+/*  for underlined links*/
+.navbar-links ul li {
+  display: inline;
+  margin: 0 10px;
+  color: #000;
+  position: relative;
+}
+
+.navbar-links ul li::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #cc1309;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+.navbar-links ul li a:hover {
+  color: #cc0909;
+}
+
+.navbar-links ul li:hover::after {
+  transform: scaleX(1);
+}
+
+.navbar-links ul li a {
+  position: relative;
+  z-index: 1;
+}
+
+.navbar-links ul li:hover a {
+  font-weight: 150px;
+}
+/***************/
+
+.navbar-links ul li a {
+  color: #342e2e;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+.search-btn2{
+  height: 40px;
+  width: 120px;
+  background: #f0a4a4;
+  
+  margin-left: auto;
+
+  border: none;
+  color: #000;
+  border-radius: 25px;
+  margin-left: 5px;
+}
+
+
+.search-btn2:hover{
+  background: #b10505;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.header {
+  background-color: #f3f5f0; 
+  height: 450px;
+  width: 1519px;
+  
+  /*background-image: url(src/assets/images/banners.png) ;  
+  background-color: #f3f5f0; 
+  
+  */
+  
+}
+
+
+
+
+.box{
+  /*controls the placement of box */
+  height: 50vh;
+
+/*  background-image: url(image.jpg) ;     
+                                    
+    background-size: cover;
+    background-position: center;
+*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+h1{
+  color: #121111;
+  margin-bottom: 40px;
+  font-size: 50px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.search-field{
+  height: 50px;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+}
+
+.business{
+  width: 400px;
+  
+}
+
+.location{
+  width: 200px;
+}
+
+.search-btn{
+  height: 50px;
+  width: 150px;
+  background: #84bfef;
+  
+  border: none;
+  color: #000;
+  border-radius: 25px;
+  margin-left: 5px;
+}
+
+
+.search-btn:hover{
+  background: #87a5be;
+  cursor: pointer;
+}
+
+.form-box{
+  background: rgb(233, 240, 248);
+  /* background: rgba(0, 0, 0, .5); */
+  padding: 10px;
+  position: relative;
+}
+
+
+
+
+
+
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #87a5be;
+  /*color: #adadad;*/
+  margin-right: 10px;
+}
+
+.second-icon {
+  position: absolute;
+  top: 50%;
+  right: 525px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #87a5be;
+  
+  margin-right: 15px;
+}
+
+.search-field {
+  padding-left: 30px; /* Adjust the padding to create space for the icon */
+  /* Add any additional styling for the input field */
+}
+
+
+
+.line-container {
+  position: relative;
+  height: 10px; /* Adjust the height of the line */
+  width: 12%; /* Adjust the width as needed */
+  background-color: #def9f2; /* Set the background color of the line */
+  display: flex;
+  align-items: center;
+
+  margin-top: 30px;
+  margin-left: 45%;
+  margin-bottom: 20px;
+}
+
+.line {
+  flex-grow: 1;
+  height: 2px; /* Adjust the height of the line */
+  background-color: #def9f2; /* Set the color of the line */
+}
+
+.sphere {
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 20px; /* Adjust the size of the sphere */
+  height: 20px; /* Adjust the size of the sphere */
+  border-radius: 50%;
+  background-color: #00c99b; /* Set the color of the sphere */
+  animation: sphereAnimation 4s linear infinite;
+}
+
+@keyframes sphereAnimation {
+  0% {
+    left: -10%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+

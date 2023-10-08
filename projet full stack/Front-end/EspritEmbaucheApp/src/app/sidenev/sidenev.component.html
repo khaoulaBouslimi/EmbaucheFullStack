@@ -1,0 +1,151 @@
+ 
+    <mat-sidenav-container>
+        
+        <mat-sidenav mode="side" opened class="shadowed-sidenav">
+            <img class="avatar mat-elevation-z8" src="/assets/images/adm.jpg"   />
+            <!--
+            <h4 class="name">John Smith</h4>
+            <p class="designation">Software Engineer</p>
+            <p class="designation"  *ngFor="let role of currentUser.roles"> 
+                {{ role === 'ROLE_ADMIN' ? 'Admin' : role }} 
+            </p>
+
+            -->
+
+ 
+            <h4 class="name" >{{ currentUser.username }}</h4>
+            
+            <p class="designation"  *ngFor="let role of currentUser.roles"> 
+                {{ role === 'ROLE_ADMIN' ? 'Admin' : role }} 
+            </p>
+
+            <mat-divider></mat-divider>
+
+            <button mat-button class="menu-button" routerLink="/home">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </button>
+
+            <button mat-button class="menu-button" (click)="loadComponent('registeradmin')">
+                
+                <i class="bi bi-person-add" style="font-size: 20px; color: rgb(255, 255, 255);" ></i>
+                <span style="margin-left: 5px; font-size: 12px;">Ajouter un admin</span>
+
+            </button>
+
+            
+        
+
+            <mat-divider></mat-divider>
+
+
+            
+
+            <button mat-button class="menu-button" (click)="loadComponent('company')">
+                <i class="bi bi-building-fill-add" style="font-size: 20px; color: rgb(255, 255, 255);"></i>
+                <span style="margin-left: 5px; font-size: 12px;">Ajouter une entreprise</span>
+            </button>
+
+            <button mat-button class="menu-button" (click)="loadComponent('companyList')">
+                <i class="bi bi-buildings" style="font-size: 20px;"></i>
+                <span style="margin-left: 5px; font-size: 12px;">liste d'entreprises</span>
+            </button>
+
+            <button mat-button class="menu-button" (click)="loadComponent('offerslist')">
+                <i class="bi bi-briefcase-fill"style="font-size: 20px;"></i>
+                <span style="margin-left: 5px; font-size: 12px;">liste d'offres d'emplois</span>
+            </button>
+
+<!--
+            <button mat-button class="menu-button" (click)="loadComponent('addOffer')">
+                <i class="bi bi-briefcase-fill"style="font-size: 20px;"></i>
+                <span style="margin-left: 5px; font-size: 12px;">add </span>
+            </button>
+    
+
+        <button mat-button class="menu-button" (click)="loadComponent('up')">
+                <mat-icon>work</mat-icon>
+                <span>upload</span>
+            </button>
+-->
+    
+            
+
+            <mat-divider></mat-divider>
+
+            <button mat-button class="menu-button" (click)="loadComponent('emails')"> 
+                <i class="bi bi-envelope-at-fill" style="font-size: 20px;"></i>
+                <span style="margin-left: 5px; font-size: 12px;">Emails</span>
+            </button>
+
+            <mat-divider></mat-divider>
+
+            <button mat-button class="menu-button" (click)="logout()" >
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+            
+            <!--
+            <button mat-button class="reset-button" (click)="resetComponent()">
+                Reset
+            </button>
+            <button (click)="resetContent()">Reset Content</button>
+            -->
+
+
+
+        </mat-sidenav>
+
+
+
+
+        <mat-sidenav-content>
+
+            
+            <div class="content mat-elevation-z8">
+
+                <router-outlet></router-outlet>
+                <router-outlet name="sideNavOutlet"></router-outlet>
+
+                <ng-container *ngIf="selectedComponent === 'registeradmin'">
+                    <app-register></app-register>
+                </ng-container>
+                
+                <ng-container *ngIf="selectedComponent === 'emails'">
+                    <app-mails></app-mails>
+                </ng-container>
+
+                <ng-container *ngIf="selectedComponent === 'addOffer'">
+                    <app-offer></app-offer>
+                </ng-container>
+
+            
+
+
+                <ng-container *ngIf="selectedComponent === 'company'">
+                    <app-company></app-company>
+                </ng-container>
+                
+                
+
+                <ng-container *ngIf="selectedComponent === 'offerslist'">
+                    <app-display-offers></app-display-offers>
+                </ng-container>
+
+                
+
+                <ng-container *ngIf="selectedComponent === 'companyList'">
+                    <app-company-lists></app-company-lists>
+                </ng-container>
+
+                <ng-container *ngIf="selectedComponent === 'up'">
+                    <app-upload-files></app-upload-files>
+                </ng-container>
+
+                
+
+            </div>
+        </mat-sidenav-content>
+        
+    </mat-sidenav-container>
+ 

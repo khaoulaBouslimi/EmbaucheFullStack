@@ -1,0 +1,85 @@
+<header class="header">
+  <!-- Navbar content here -->
+ 
+  <nav  class="navbar ">
+    <div class="navbar-logo"> 
+      <img src="assets/images/esp.png" alt="Logo" >
+    </div>
+    <div class="navbar-links">
+      <ul>
+
+        <li routerLinkActive="active" >
+          <a routerLink="/home" > Home </a>
+        </li>
+
+        <li routerLinkActive="active" >
+          <a routerLink="#">About</a>
+        </li>
+
+        <li  [routerLinkActive]="['active']">
+          <a routerLink="/jobOffers"> Offres d'emploi </a>
+        </li>
+
+        <li routerLinkActive="active">
+          <a routerLink="#"> Companies </a>
+        </li>
+
+      </ul>
+    </div>
+    <button class="search-btn2" type="button" routerLink="/Login">Login</button>
+    <button class="search-btn2" type="button" routerLink="/register">Sign In</button>
+    
+  </nav>
+  
+
+<!--header content-->
+
+  <div class="box">
+
+    <form>
+      <strong>
+        <h1> 
+          <span style="color: #000000;  font-family: serif;" >One Search Hundreds of Jobs!</span>  
+          <br> 
+         
+          <span style="color: #697687; font-size: 18px; font-family: serif;">
+            <a routerLink="/home" class="nav-link" style="margin-right: 3px;">Home</a> <strong class="nav-dot">&middot;</strong> Postulez
+          </span>
+          
+          
+        </h1>
+      </strong>
+      
+      <div class="form-box">
+
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <input type="text" class="search-field business" placeholder="Keywords / Job Title ..">
+
+
+        <span class="second-icon">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        </span>
+        <input type="text" class="search-field business" placeholder="City ..">
+
+
+        <button class="search-btn" type="button">
+          search
+        </button>
+      </div>
+    </form>
+
+
+
+  </div>
+
+</header>
+
+
+
+<div class="line-container">
+  <div class="line"></div>
+  <div class="sphere"></div>
+</div>
+

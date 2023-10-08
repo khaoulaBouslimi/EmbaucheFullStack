@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    
+    <nav class="navbar ">
+        <div class="navbar-logo">
+          <img src="assets/images/esp.png" alt="Logo">
+        </div>
+        <div class="navbar-links">
+          <ul>
+            <li routerLinkActive="active" >
+              <a routerLink="/home" > Home </a>
+            </li>
+    
+    
+            <li  [routerLinkActive]="['active']">
+              <a routerLink="/jobOffers"> Offres d'emploi </a>
+            </li>
+    
+            
+          </ul>
+        </div>
+        <button routerLink="/Login" class="transparent-button">
+          <i class="bi bi-person"></i>
+        </button>
+        
+    
+    </nav>
+    <header class="header"> 
+      <!--header content-->
+      
+        <div class="box">
+      
+          <form>
+            <strong>
+              <h1> 
+                <br>
+                <span style="color: #000000;  font-family: serif;  " >One Search Hundreds of Jobs!</span>  
+                <br> 
+               
+                <span style="color: #697687; font-size: 18px; margin-top: 20px ;font-family: serif; display: flex; align-items: center; justify-content: center;">
+                    <a routerLink="/home" class="nav-link" style="margin-right: 3px;">Home</a>
+                    <strong class="nav-dot" style="margin-right: 3px;">&middot;</strong>
+                    <span>Postulez</span>
+                  </span>
+                   
+              </h1>
+            </strong>
+            
+            <div class="form-box">
+      
+              <span class="search-icon">
+                <i class="fa fa-search"></i>
+              </span>
+              <input type="text" class="search-field business" placeholder="Rechercher emplois, mots clés, entreprise " 
+              name="searchKeyword"
+              [(ngModel)]="searchKeyword">
+      
+      
+              <span class="second-icon" >
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              </span>
+              <input type="text" class="search-field business" placeholder="tapez un lieu "
+              name="searchCity"
+              [(ngModel)]="searchCity">
+      
+      
+              <button class="search-btn" type="button" (click)="applySearchFilter()">
+                Search
+              </button>
+              
+            </div>
+          </form>
+      
+      
+      
+        </div>
+      
+      </header>
+
+
+     
+
+
+    <div class="container">
+
+      <button class="filter-button" (click)="toggleFilterCard()">
+        <i class="bi bi-filter" style="margin-right: 10px;"></i> Filter
+      </button>
+      
+      
+
+        <!-- Overlay -->
+        <div class="overlay" *ngIf="showFilterCard" (click)="toggleFilterCard()" ></div>
+
+        <!-- Filter card -->
+        <div class="filter-card" *ngIf="showFilterCard">
+          <h3 style="text-align: center; color: rgb(81, 82, 87);">Filter Options</h3>
+          <!-- Filter options go here -->
+          <label style="color: rgb(81, 82, 87);">Type de contrat:</label>
+
+          <div class="filter-option" >
+            <input type="checkbox" name="stageEte" id="stageEte" value="stageEte" [(ngModel)]="filterOptions.stageEte">
+            <label for="stageEte" style="margin-left: 5px; color: #536387;">Stage d'été</label>
+          </div>
+
+          <div class="filter-option">
+            <input type="checkbox" name="stageIngenieur" id="stageIngenieur" value="stageIngenieur" [(ngModel)]="filterOptions.stageIngenieur">
+            <label for="stageIngenieur"  style="margin-left: 5px; color: #536387;">Stage Ingénieur</label>
+          </div>
+
+          <div class="filter-option">
+            <input type="checkbox" name="stagePFE" id="stagePFE" value="stagePFE" [(ngModel)]="filterOptions.stagePFE">
+            <label for="stagePFE" style="margin-left: 5px; color: #536387;">Stage PFE</label>
+          </div>
+
+          <div class="filter-option">
+            <input type="checkbox" name="CDD" id="CDD" value="CDD" [(ngModel)]="filterOptions.CDD">
+            <label for="CDD"  style="margin-left: 5px; color: #536387;"> CDD </label>
+          </div>
+
+          <div class="filter-option">
+            <input type="checkbox" name="CDI" id="CDI" value="CDI" [(ngModel)]="filterOptions.CDI">
+            <label for="CDI"  style="margin-left: 5px; color: #536387;  ">CDI</label>
+          </div>
+
+          
+
+          <button (click)="applyFilter()" class="button">Appliquer filtre</button>
+
+        </div>
+
+
+        <div class="card-container">
+
+
+          <div *ngIf="isCardVisible" class="cardalert">
+            
+            <button class="close-button" (click)="hideCard()">X</button>
+
+            <h2 class="formbold-form-label">Créer une alerte</h2>
+            <p style="font-size: 16px;">Recevez directement par email des offres d’emploi similaires !</p>
+            <form [formGroup]="emailForm" (ngSubmit)="subscribe()">
+                <div class="formbold-input-container">
+                  <input type="email" formControlName="email" name="email" [(ngModel)]="email" placeholder="Entrez votre adresse e-mail" required class="formbold-form-input">
+              
+                   <!-- Display an error message if the email is invalid -->
+                  <div *ngIf="emailForm.get('email')?.hasError('invalidEmail')" style="text-align: center; font-size: 17px;">
+                    <small class="text-danger">
+                      <i class="bi bi-exclamation-triangle-fill" style="margin-right: 5px;"></i>
+                      Adresse e-mail invalide. Elle doit se terminer par '@esprit.tn'.
+                    </small>
+                  </div>
+               
+                </div>
+
+
+
+
+
+              <div class="formbold-button-container">
+
+                <button type="submit" [disabled]="emailForm.get('email')?.hasError('invalidEmail')" class="button"> Inscription
+                  <svg viewBox="0 0 448 512" class="bell">
+                    <path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z">
+
+                  </path></svg> 
+               </button>
+
+ 
+                  
+              </div>
+            </form>
+          
+          </div>
+          
+          <div class="card" *ngFor="let offer of filteredJobOffers.slice().reverse()" (click)="showDetails(offer)">
+
+            
+
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <img 
+                  [src]="getLogoUrl(offer.companyId)"
+                  style="height: 70px; margin-bottom: 10px; width: 70px; border-radius: 50%; box-shadow: 0 7px 8px rgba(20, 21, 21, 0.2);"
+                  alt="logo"
+                >
+            </div>
+              
+
+            <h2>{{ offer.jobTitle }}</h2>
+
+            <p style="color: #000000; "> <strong>{{ offer.companySname }} </strong> </p>
+            <div class="description" [innerHTML]="offer.description"></div>
+ 
+            
+            <p> 
+                <span style="color: #64bebf; font-size: 16px; margin-right: 5px;">
+                    <i class="bi bi-geo-fill"></i>
+                </span>  {{ offer.country }} <strong> &middot; </strong> 
+
+                <ng-container *ngIf="hasJobOfferExpired(offer) ; else otherDays">
+                    depuis {{ offer.offersduration }} j
+                </ng-container>
+                <ng-template #otherDays>
+                    Durée {{ offer.offersduration }} j
+                </ng-template>
+            </p>
+            
+
+            <p > 
+                <strong>
+
+                    <span style="color: #000000; font-size: 16px; margin-right: 20px; ">
+                        <i class="bi bi-briefcase"></i>
+                        Temps plein
+                    </span>
+
+                    <span style="color: #000000; font-size: 16px; ">
+                        <i class="bi bi-briefcase"></i>
+                        {{ offer.jobType }}
+                    </span>
+
+
+                    <span *ngIf="hasJobOfferExpired(offer)">
+                        <span style="color: #f3210e; font-size: 16px; margin-left: 160px; margin-right: 5px; ">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </span>
+                        Exceeded
+                    </span>
+
+                    <span *ngIf="!offer.hasExceededDuration">
+                        <span style="color: #1fb005; font-size: 16px; margin-left: 160px; margin-right: 5px; ">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </span>
+                        Recrutement actif
+                    </span>
+
+                    <!--
+                        <span style="color: #1fb005; font-size: 16px; margin-left: 160px; margin-right: 5px; ">
+                        <i class="bi bi-check-circle-fill"></i>
+                        </span> Recrutement actif
+                    -->
+
+                </strong>
+                
+            </p>
+
+            <!-- Other summary details of the job offer -->
+
+            <button class="cta" type="button" (click)="postuler(offer.idJobOffer, offer.jobTitle)"  [disabled]="offer.hasExceededDuration">
+                <span>Postulez </span>
+                <svg viewBox="0 0 13 10" height="10px" width="15px">
+                  <path d="M1,5 L11,5"></path>
+                  <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+              </button>
+          
+          </div>
+        </div>
+        
+
+        <div class="details-container">
+          <div class="details-card" *ngIf="selectedOffer; else noDetails">
+
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <img 
+                  [src]="getLogoUrl(selectedOffer.companyId)"
+                  style="height: 140px; width: 140px; border-radius: 50%; box-shadow: 0 7px 8px rgba(115, 15, 1, 0.2); margin-bottom: 30px;"
+                  alt="logo"
+                >
+            </div>
+            
+            <h2 style="margin-bottom: 25px; color: rgb(30, 48, 107); font-size: 25px;">Details:</h2>
+    
+            
+    
+            <!-- Additional details of the job offer -->
+    
+            <p class="trait"> 
+                <span  style="color: rgb(30, 48, 107);">
+                    <strong> Type du contrat </strong>
+                </span>
+                 
+                <span class="right" style="color: rgb(87, 87, 86);"> 
+                    {{selectedOffer.jobType}} 
+                </span> 
+            </p>
+    
+    
+            <p class="trait">  
+                <span  style="color: rgb(30, 48, 107);">
+                    <strong>Adresse</strong>
+                </span>
+                <span class="right" style="color: rgb(87, 87, 86);"> 
+                    {{selectedOffer.address}} 
+                </span> 
+            </p>
+    
+            <p class="trait"> 
+                <span  style="color: rgb(30, 48, 107);">
+                    <strong>Date de publication </strong>
+                </span>
+                <span class="right" style="color: rgb(87, 87, 86);"> {{ selectedOffer.startDate }}  </span> 
+            </p>
+    
+            <p style="margin-bottom: 30px;">  
+                <span  style="color: rgb(30, 48, 107); margin-bottom: 10px; font-size: 20px;">
+                    <strong>Description de l'offre</strong>
+                </span>
+                <span class="right" style="color:rgb(87, 87, 86); margin-bottom: 20px; margin-top: 10px;">  <div style="max-height: 350px; overflow-y: auto; " [innerHTML]="selectedOffer.description"></div>
+
+                </span> 
+            </p>
+    
+            <p class="trait"> 
+                <span  style="color: rgb(30, 48, 107);">
+                    <strong>Taille de la société</strong>
+                </span>
+                <span class="right" style="color: rgb(87, 87, 86);"> 
+                    {{selectedOffer.nbrEmployees}} 
+                </span> 
+            </p>
+    
+            
+    
+            <p class="trait">  
+                <span  style="color: rgb(30, 48, 107);">
+                    <strong>Site web</strong>
+                </span>
+                <span class="right" style="color: rgb(87, 87, 86);"> 
+                     <a [href]="selectedOffer.websiteLink" target="_blank" rel="noopener noreferrer">{{ selectedOffer.websiteLink }}</a>
+                </span> 
+            </p>
+    
+            
+          </div>
+    
+    
+          <ng-template #noDetails>
+            <div class="no-details">
+                <!--
+                        style="height: 100px; width: 100px; border-radius: 50%; box-shadow: 0 7px 8px rgba(90, 200, 200, 0.2);"
+
+                    -->
+    
+                    
+
+                <img 
+                    src="assets/images/jobi.jpg" alt="job" class="center-top-image"
+                    style="height: 120px; width: 120px; border-radius: 50%; box-shadow: 10px  rgba(90, 200, 200, 0.2);"
+                    alt="logo" 
+                > 
+                <h2 style="color: #010101; font-size: 30px; margin-top: 30px; margin-bottom: 20px;">
+                  <!--color: #64bebf; // rgb(255, 191, 0);  -->
+                  <strong> Laissez les recruteurs vous trouver !</strong>
+                </h2>
+    
+              <p>Vous souhaitez accélérer votre recherche d’emploi ? Postulez sur Esprit Embauche et soyez visible des recruteurs qui recherchent des profils comme le vôtre. Et recevez en plus des recommandations d’emploi pertinentes dans votre boîte de réception.</p>
+            </div>
+          </ng-template>
+    
+    
+        </div>
+
+      </div>
+
+
+
+<br>
+<br>
+
+    
+<footer class="footer">
+  <div class="footer-content">
+    <div class="left-content">
+      <p>2023 &copy; All Rights Reserved  -  Khaoula Bouslimi </p>
+    </div>
+    <div class="right-content">
+      <div class="follow-us">
+          <p>Suivez nous sur:</p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/esprit.tn"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/esprit_ingenieur/"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/i/flow/login?redirect_after_login=%2FEsprit_News"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/channel/UCJ5wuQ9AQYtpf9Arieu3iXA"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/esprit_2"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

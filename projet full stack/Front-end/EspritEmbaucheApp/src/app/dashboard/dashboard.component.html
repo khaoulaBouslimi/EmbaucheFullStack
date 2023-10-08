@@ -1,0 +1,195 @@
+<header class="header">
+    <!-- Navbar content here -->
+   
+    <nav  class="navbar ">
+      <div class="navbar-logo">
+        <img src="assets/images/logo.png" alt="Logo">
+      </div>
+      <div class="navbar-links">
+        <ul>
+          <li><a routerLink="/jobs">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a routerLink="/jobs">Offres d'emploi</a></li>
+          <li><a href="#">Companies</a></li>
+        </ul>
+      </div>
+      <button class="search-btn2" type="button" routerLink="">Sign In</button>
+      
+    </nav>
+    
+  
+  <!--header content-->
+  
+    <div class="box">
+      <form>
+        <strong>
+          <h1> 
+            <span  >Postulez</span>  
+            <br> 
+            <span style="color: rgb(45, 143, 143); font-size: 18px; font-family: serif;">"Un pas de plus vers votre avenir professionnel."</span> </h1>
+        </strong>
+      </form>
+    </div>
+  
+  </header>
+
+<div class="cardo">
+  <div class="formbold-main-wrapper">
+    <div class="formbold-form-wrapper">
+      
+      <form >
+
+        <div class="formbold-mb-3">
+            <label for="email" class="formbold-form-label">
+              Adresse email <span style="color: rgb(250, 10, 10);">*</span>
+            </label>
+            <input
+                type="email"
+                name="email"
+                id="email"
+                class="formbold-form-input"
+            />
+        </div>
+        
+        <div class="formbold-input-flex">
+            
+          <div>
+            <label for="nom" class="formbold-form-label">
+              Nom <span style="color: rgb(250, 10, 10);">*</span>
+            </label>
+            <input
+              type="text"
+              name="nom"
+              id="nom"
+              class="formbold-form-input"
+            />
+          </div>
+
+          <div>
+            <label for="prenom" class="formbold-form-label"> Prénom <span style="color: rgb(250, 10, 10);">*</span> </label>
+            <input
+              type="text"
+              name="prenom"
+              id="prenom"
+              class="formbold-form-input"
+            />
+          </div>
+        </div>
+  
+        
+  
+       
+  
+  
+        <div class="formbold-input-flex">
+          <div>
+            <label class="formbold-form-label">
+                Spécialité <span style="color: rgb(250, 10, 10);">*</span>
+              </label>
+      
+              <select class="formbold-form-select" name="specialite" id="specialite" >
+                <option selected>Selectionnez une spécialité ...</option>
+                <option value="Informatique">Informatique</option>
+                <option value="EM (Electro mécanique)">EM (Electro mécanique)</option>
+                <option value="GC (Génie Civil)"> GC (Génie Civil) </option>
+                <option value="Télécom">Télécom</option>
+              </select>
+          </div>
+          <div>
+            <label for="option" class="formbold-form-label"> Option <span style="color: rgb(250, 10, 10);">*</span> </label>
+            <input
+              type="text"
+              name="option"
+              id="option"
+              class="formbold-form-input"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="cvInput">CV:</label>
+          <input id="cvInput" type="file" accept=".pdf" name="cv" required>
+        </div>
+  
+        
+  
+  
+        <button class="formbold-btn">Register Now</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<h2>Ajouter un candidat</h2>
+
+<form (ngSubmit)="ajouterCandidat(candidatForm.value)" #candidatForm="ngForm" enctype="multipart/form-data">
+  <div>
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" name="nom" ngModel required>
+  </div>
+
+  <div>
+    <label for="prenom">Prénom:</label>
+    <input type="text" id="prenom" name="prenom" ngModel required>
+  </div>
+
+  <div>
+    <label for="cv">CV:</label>
+    <input type="file" id="cv" name="cv" (change)="onCvFileSelected($event)" accept=".pdf">
+  </div>
+
+  <div>
+    <label for="lettreMotivation">Lettre de motivation:</label>
+    <input type="file" id="lettreMotivation" name="lettreMotivation" (change)="onLettreMotivationFileSelected($event)" accept=".pdf">
+  </div>
+
+  <button type="submit" [disabled]="!candidatForm.valid || !cv|| !lettreMotivation">Ajouter</button>
+</form>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let candidat of candidats">
+      <td>{{ candidat.nometprenom }}</td>
+      <td>{{ candidat.nometprenom }}</td>
+      <td>
+        <button (click)="downloadCvv(candidat.idCandidature)">Download CV</button>
+
+        <button (click)="downloadCv(candidat)">Télécharger CV</button>
+        <button (click)="downloadLettreMotivation(candidat)">Télécharger Lettre de Motivation</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let candidate of candidats">
+    <td>{{ candidate.idCandidature }}</td>
+    <td>{{ candidate.nometprenom }} {{ candidate.nometprenom }}</td>
+    <td>
+      <!--
+        <button (click)="downloadCV(candidate.idCandidat, candidate.nom)">Download CV</button>
+      -->
+      <button (click)="download(candidate.idCandidature)">Download CV</button>
+
+    </td>
+  </tr>
+</table>
+

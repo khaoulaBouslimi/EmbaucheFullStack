@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+  <nav class="navbar ">
+    <div class="navbar-logo">
+      <img src="assets/images/esp.png" alt="Logo">
+    </div>
+    <div class="navbar-links">
+      <ul>
+        <li routerLinkActive="active" >
+          <a routerLink="/home" > Home </a>
+        </li>
+
+
+        <li  [routerLinkActive]="['active']">
+          <a routerLink="/jobOffers"> Offres d'emploi </a>
+        </li>
+
+      </ul>
+    </div>
+    <button routerLink="/Login" class="transparent-button">
+      <i class="bi bi-person"></i>
+    </button>
+    
+
+  </nav>
+
+    <header class="header"></header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="about-section">
+
+      <img src="/assets/images/jj.jpg" alt="About Us Image" style=" width: 500px; height: 350px; margin-left: 100px; margin-right: 0px; ">
+
+      <div class="about-content">
+        <h2 style="color: #000000;font-size: 50px; font-family: serif; font-weight: 600px;  text-align: center; margin-bottom: 30px;"> About Us</h2>
+        <p>Bienvenue sur notre plateforme dédiée à l'essor de votre carrière. Ici, nous vous offrons une invitation à découvrir un monde d'opportunités captivantes qui n'attendent que vous pour être saisies. Que vous aspiriez à de nouveaux horizons professionnels ou que vous recherchiez des défis stimulants, notre plateforme vous ouvre les portes d'une multitude de chemins à explorer. Plongez dans un éventail de possibilités passionnantes, prêtes à propulser votre carrière vers des sommets insoupçonnés. Quelle que soit votre ambition, notre plateforme est conçue pour vous accompagner dans votre quête d'excellence professionnelle.</p>
+      </div>
+
+
+    
+    </section>
+
+
+    
+ 
+    
+
+
+
+    <section id="section-fade-inn" [@fadeIn]="animationStateFadeInn" class="map-section" >
+
+        <h1 style="margin-bottom: 20px; padding-top: 0px;">
+          
+          <span style="color: #000000; font-family: serif;">Processus de travail</span>
+          <br>
+          <span style="color: #697687; font-size: 18px; font-family: serif;">
+            Pour choisir l'emploi de vos rêves et rendre l'avenir radieux. <br>
+ 
+          </span>
+
+        </h1>
+  
+
+  
+      <div class="working-process-container">
+  
+
+        
+        <div class="col-lg-3 col-sm-6">
+          <div class="working-process-card2">
+            <div class="working-process-sl">
+ 
+                <i class="bi bi-person-vcard" style="font-size: 50px; color: #f8151e; "></i>
+              <h5 style="font-size: 25px; font-family: serif; "> <strong> Créer un CV </strong> </h5> 
+              <p>qui reflète votre parcours unique <br> et met en avant vos compétences <br> exceptionnelles.</p>
+             </div>
+        
+          </div>
+        </div>
+        
+        
+        
+        <div class="col-lg-3 col-sm-6">
+          <div class="working-process-card2">
+            <div class="working-process-sl">
+              <i class="fa-brands fa-searchengin" style="font-size: 50px; color: #f8151e; margin-bottom: 15px; "></i>
+              <h5 style="font-size: 25px; font-family: serif;"><strong>Recherche d’offres</strong></h5>
+              <p>Trouvez votre prochaine opportunité professionnelle <br> en explorant nos offres d'emploi.</p>
+            </div>
+            
+          </div>
+        </div>
+
+
+
+ 
+
+        <div class="col-lg-3 col-sm-6">
+          <div class="working-process-card2">
+            <div class="working-process-sl">
+              <i class="bi bi-postcard" style="font-size: 50px; color: #f8151e; "></i>
+              <h5 style="font-size: 30px; font-family: serif;"><strong>Postuler</strong></h5>
+              <p>Envoyer votre candidature afin de <br> trouver votre prochaine opportunité <br> professionnelle</p>
+            </div>
+             
+          </div>
+        </div>
+       
+  
+      </div>
+         
+  
+    </section>
+  
+
+    <div class="counter-area" >
+      <div class="row  " style=" width: 1500px;  margin-bottom: 30px;  margin-top: 10px;">
+        <div class="col-sm-6 mb-60" >
+          <div class="counter-single" id="liveJobsSection">
+             
+              <div class="row">
+                
+                
+                <!-- Second Counter Container -->
+                <div class="col-md-4">
+    
+                  <div class="containerr"  >
+                    <div class="image-container">
+                      <img src="/assets/images/bat.png" alt="" style="height: 125px; width: 125px;   align-items: center;  ">
+                    </div>
+                    <div class="text-container">
+                      <p style="color: #000000; font-size: 30px; margin-left: 10px;"> <strong> {{ currentCompaniesCount }}+ </strong></p>
+                      <p style="color: #818086; padding: 0; font-size: 17px; margin-left: 10px;">  <strong>Les entreprises</strong> </p>
+                    </div>
+                  </div>
+    
+                </div>
+                
+                <!-- Third Counter Container -->
+                <div class="col-md-4">
+    
+                  <div class="containerr"  >
+                    <div class="image-container-candidat">
+                      <img src="/assets/images/visitors.png" alt="" style="height: 125px; width: 170px;    align-items: center; ">
+                    </div>
+                    <div class="text-container">
+                      <p style="color: #000000; font-size: 30px; margin-left: 10px;"> <strong> {{ currentCandidatesCount }}K </strong></p>
+                      <p style="color: #818086; padding: 0; font-size: 17px; margin-left: 4px; ">  <strong>Les visiteurs</strong> </p>
+                    </div>
+                  </div>
+    
+                </div>
+    
+                <!-- First Counter Container -->
+                <div class="col-md-4">
+    
+                  <div class="containerr"  >
+                    <div class="image-container-offer">
+                      <img src="/assets/images/j.png" alt="" style="height: 125px; width: 200px;   align-items: center; ">
+                    </div>
+                    <div class="text-container">
+                      <p style="color: #000000; font-size: 30px; margin-left: 10px;"> <strong> {{ currentLiveJobsCount }}+ </strong></p>
+                      <p style="color: #818086; padding: 0; font-size: 17px; margin-left: 4px;">  <strong>Offres d'emploi</strong> </p>
+                    </div>
+                  </div>
+    
+                </div>
+    
+              </div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    
+    
+    
+    <section class="map-section">
+    
+
+      <div [@slideToRight]="animationStates" id="section-slide-right" >
+        <h1 class="h1">
+          
+          <span style="color: #000000; font-family: serif;">Nos Top Recruiters</span>
+          <br>
+          <span style="color: #697687; font-size: 18px; font-family: serif;">
+            Pour choisir votre rêve d'emploi tendance et pour rendre l'avenir radieux.
+          </span>
+        </h1>
+  
+      </div>
+      
+
+      <div class="carousel-container">
+        <div class="carousel" [@slideAnimation]="animationState">
+          <div class="logos-container">
+            <div class="logo" *ngFor="let uniqueFileName of getUniqueFileNames(companies)">
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <img 
+                  [src]="getLogoUrl(uniqueFileName)"
+                  style="height: 150px; width: 150px; border-radius: 50%; box-shadow: 0 7px 8px rgba(20, 21, 21, 0.2);"
+                  alt="logo"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    
+    
+    
+    
+    
+  
+  
+
+  <section id="section-fade-in" [@fadeIn]="animationStateFadeIn" class="map-section" >
+
+    <div >
+      <h1>
+        
+        <span style="color: #000000; font-family: serif;">Nos emplacements</span>
+        <br>
+        <span style="color: #697687; font-size: 18px; font-family: serif;">
+          N'hésitez pas à nous visiter !
+        </span>
+      </h1>
+
+    </div>
+
+    <div class="card-container">
+
+      <div class="cardo">
+
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.0632443687034!2d10.1911809!3d36.852959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb75abbb1733%3A0x557a99cdf6c13b7b!2sESPRIT%20Ecole%20Sup%C3%A9rieure%20Priv%C3%A9e%20d'Ing%C3%A9nierie%20et%20de%20Technologies!5e0!3m2!1sen!2stn!4v1626776460917!5m2!1sen!2stn" 
+          width="700" 
+          height="300"   
+          
+          style="border-radius: 15px;"
+          >
+        </iframe>
+
+      </div>
+
+      <div class="cardo">
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.504597070943!2d10.1886255!3d36.8972329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cb745e5c6f1b%3A0xf69a51ee3c65c12e!2sESB%20%3A%20Esprit%20School%20of%20Business!5e0!3m2!1sen!2stn!4v1626780115722!5m2!1sen!2stn" 
+          width="700" 
+          height="300" 
+          allowfullscreen
+          >
+        </iframe>
+
+
+      </div>
+
+    </div>
+      
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section id="contact" class="contact-section" >
+    <div class="container">
+
+      <div [@slideIn]="animationState">
+        <h1>
+          <span style="color: #000000; font-family: serif;">Contactez-nous</span>
+          <br>
+          <span style="color: #697687; font-size: 18px; font-family: serif;">
+            Envoyez vos questions ou vos suggestions pour qu'on puisse rester à votre écoute.
+          </span>
+        </h1>
+
+      </div>
+
+
+      <div class="contact-content">
+
+
+        <div class="contact-info">
+
+
+          <div class="info-item">
+            <i class="fa-sharp fa-solid fa-location-dot"
+              style="margin-top: -80px; margin-left: 10px;  color: #f8151e;"></i>
+
+            <div class="address-info">
+              <h2 style="color: #5d5c6a;">Adresse</h2>
+              <p style="color: #030c13; margin-top: 0;">1, 2 rue André Ampère - 2083 - Pôle</p>
+              <p style="margin-top: 0;">Technologique - El Ghazala</p>
+
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+            <i class="bi bi-envelope-at-fill" style="margin-top: -60px;   color: #f8151e;"></i>
+            <div class="address-info">
+              <h2 style="color: #5d5c6a;">Email</h2>
+              <p style="color: #030c13;">contact@esprit.tn</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone" style="margin-top: -60px;   color: #f8151e;"></i>
+            <div class="address-info">
+              <h2 style="color: #5d5c6a;">Téléphone</h2>
+              <p style="color: #030c13;">T (216) 70 250 000</p>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="formbold-form-wrapper">
+          <form #formRef="ngForm"   (ngSubmit)="onSubmit(formRef)" enctype="multipart/form-data">
+
+            <div class="formbold-input-flex">
+
+              <input type="text" 
+                name="nometprenom" 
+                id="nometprenom" 
+                class="formbold-form-input"
+                placeholder="Votre nom complet ... " 
+                [(ngModel)]="nometprenom" 
+                required
+                #nometprenomInput="ngModel"  
+                [ngClass]="{'invalid-input': nometprenomInput.touched && nometprenomInput.invalid}" 
+              />
+              <span class="required-message" *ngIf="nometprenomInput.touched && nometprenomInput.invalid"> 
+                <i class="bi bi-exclamation-circle" style="font-size: 14px; color: red;"></i>
+                
+              </span>
+
+                
+              <input type="email" name="email" id="email" autocomplete="email" class="formbold-form-input"
+                placeholder="Votre adresse Mail ... " 
+                [(ngModel)]="email" 
+                required
+                #emailInput="ngModel"  
+                [ngClass]="{'invalid-input': emailInput.touched && emailInput.invalid}" 
+                />
+                <span class="required-message" *ngIf="emailInput.touched && emailInput.invalid">
+                  <i class="bi bi-exclamation-circle" style="font-size: 14px; color: red;"></i>
+
+                </span>
+
+            </div>
+
+            <div class="formbold-input-flex">
+
+              <input type="text" name="sujet" id="sujet" class="formbold-form-input"
+                placeholder="Sujet ... " 
+                [(ngModel)]="sujet" 
+                required
+                #sujetInput="ngModel"  
+                [ngClass]="{'invalid-input': sujetInput.touched && sujetInput.invalid}" 
+              />
+              <span class="required-message" *ngIf="sujetInput.touched && sujetInput.invalid"> 
+                <i class="bi bi-exclamation-circle" style="font-size: 14px; color: red;"></i>
+                
+              </span>
+
+              <input type="text" name="tel" id="tel" autocomplete="tel" class="formbold-form-input"
+                placeholder="Numéro de téléphone ... " 
+                [(ngModel)]="tel" 
+                required
+                #telInput="ngModel"  
+                [ngClass]="{'invalid-input': telInput.touched && telInput.invalid}" 
+              />
+              <span class="required-message" *ngIf="telInput.touched && telInput.invalid"> 
+                <i class="bi bi-exclamation-circle" style="font-size: 14px; color: red;"></i>
+                
+              </span>
+
+            </div>
+ 
+            <textarea placeholder="Votre message ..." [(ngModel)]="message"
+            name="message"
+            id="message"
+            required
+            #messageInput="ngModel"
+            [ngClass]="{'is-invalid': messageInput.touched && messageInput.invalid}"
+          ></textarea>
+          <div class="invalid-feedback" *ngIf="messageInput.touched && messageInput.invalid">
+            Please enter a valid message.
+          </div>
+
+
+
+            <button class="btn-shine">
+              <span>Envoyer</span>
+          </button>
+           </form>
+        </div>
+
+      </div>
+
+
+    </div>
+  </section>
+
+
+
+
+
+  <app-footer></app-footer>
+
+ 
+
+</body>
+
+</html>
